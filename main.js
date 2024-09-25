@@ -57,6 +57,10 @@ const app = Vue.createApp({
         },
         deleteTask(taskIndex){
             this.taskList = this.taskList.filter((_,i) => i !== taskIndex)
+        },
+        clearAllTask(){
+            this.taskList = [];
         }
+
     }
 })
