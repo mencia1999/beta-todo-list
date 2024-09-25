@@ -13,4 +13,4 @@ You can add, delete and mark a task as done
 - Edit a task
 
 # LIVE 
-- Coming soon ...
+- [beta-todo-list](https://beta-todo-list.netlify.app/)
