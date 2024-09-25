@@ -9,7 +9,7 @@ app.component('task-listing',{
     template :
     /*html*/
     `
-        <div class="task-list w-11/12 ">
+        <div class="task-list w-11/12 max-h-4/5 overflow-y-auto scroll-smooth scrollbar-custom ">
             <div class="p-2 task-list-item flex justify-between bg-white rounded-xl m-5 shadow"
                 :class="{
                 'bg-[#FCFFE0]': task.isDone,
