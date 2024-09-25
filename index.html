@@ -22,7 +22,7 @@
         <p>{{ dateNow }}</p>
         <div class="task-input-container m-9 w-11/12 rounded-2xl border-dashed bg-[#eee] p-2 flex justify-between items-center">
            
-            <input type="text" placeholder="New Task" class="w-96 bg-inherit text-black outline-none border-none px-2" v-model="newTaskName" @keydown="saveTask($event)">
+            <input type="text" placeholder="New Task" class="w-3/4  bg-inherit text-black outline-none border-none px-2" v-model="newTaskName" @keydown="saveTask($event)">
             <i @click="saveTask()" class="fa-solid fa-plus text-black px-2 new-task-icon"></i>
            
         </div>
