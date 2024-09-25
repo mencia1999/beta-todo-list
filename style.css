@@ -1,3 +1,25 @@
+body{
+    font-family:'Poppins';
+    background: linear-gradient(to bottom, #F5DAD2 30%, white 50%);
+}
+
+i.new-task-icon{
+    display:inline-block;
+    background-color : #75A47F;
+    padding:10px;
+    height:100%;
+    border-radius:10px;
+    color:#fff;
+}
 i:hover{
-    cursor:pointer
+    cursor:pointer;
+   
+}
+h1{
+    font-family:'Handlee'
+}
+
+.footer{
+    position:absolute;
+    bottom:10px;
 }

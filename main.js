@@ -7,31 +7,36 @@ const app = Vue.createApp({
                    
                     name: "Jouer au golf",
                     isBeeingEdited: false,
-                    editedName:''
+                    editedName:'',
+                    isDone: false,
+                    position: 1
                 },
                 {
                    
                     name: "Faire à manger",
                     isBeeingEdited: false,
-                    editedName: ''
+                    editedName: '',
+                    isDone: false,
+                    position: 2
                 }
                
             ],
             newTaskName: '',
-            taskListDone : [],
-            isEditing: false
+           
+            
         }
     },
     methods: {
         saveTask(e = null) {
             if(e === null || (e !== null && e.key === 'Enter')){
-               
-                
+                let position = this.taskList.length + 1
                 let task = {
                    
                     name: this.newTaskName,
                     isBeeingEdited: false,
-                    editedName:''
+                    editedName:'',
+                    isDone: false,
+                    position: position
                 }
                 
                 this.taskList.push(task)
@@ -40,10 +45,8 @@ const app = Vue.createApp({
             }
         },
         displayAllTasksDone(taskIndex){
-            console.log(taskIndex)
-            const taskToMarkAsDone = this.taskList[taskIndex]
-            this.taskList = this.taskList.filter((_,i) => i !== taskIndex)
-            this.taskListDone.push(taskToMarkAsDone)
+            this.taskList[taskIndex].isDone = true
+            this.taskList[taskIndex].position = (this.taskList.length +1) * (-1)
             confetti()
             
         },

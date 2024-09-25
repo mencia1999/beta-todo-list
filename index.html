@@ -7,39 +7,39 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <!-- fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 
     <title>To Do List</title>
 </head>
-<body class="bg-slate-900 flex flex-col items-center h-screen">
-    <h1 class="text-5xl text-center text-sky-400"> First To Do List Using  </h1>
-    <p class="text-xl text-center text-white"> - Vue Js</p>
-    <p class="text-xl text-center text-white"  > - Tailwind </p>
-
-    <div class="mt-5 shadow-2xl shadow-white w-3/4 flex p-2  h-screen bg-white items-center rounded-xl flex-col" id="todo-list-app">
-        <h3 class="text-2xl">Good morning You ! </h3> 
+<body class="flex flex-col items-center h-screen">
+   <div class="todolist-container mt-5 shadow-xl shadow-grey-200 border-solid border-black border-1 w-11/12 flex p-2  h-4/5 bg-white items-center rounded-2xl flex-col" id="todo-list-app">
+        <h1 class="text-3xl text-[#75A47F] font-bold mt-5">Let's get some tasks done</h1>
         <p>{{ dateNow }}</p>
-        <div class="task-input-container m-9 w-11/12 rounded border-dashed bg-[#eee] p-2 flex justify-between items-center">
+        <div class="task-input-container m-9 w-11/12 rounded-2xl border-dashed bg-[#eee] p-2 flex justify-between items-center">
            
-            <input type="text" placeholder="New Task" class="w-4/5 bg-inherit text-black outline-none border-none" v-model="newTaskName" @keydown="saveTask($event)">
-            <i @click="saveTask()" class="fa-solid fa-plus text-black"></i>
+            <input type="text" placeholder="New Task" class="w-96 bg-inherit text-black outline-none border-none px-2" v-model="newTaskName" @keydown="saveTask($event)">
+            <i @click="saveTask()" class="fa-solid fa-plus text-black px-2 new-task-icon"></i>
            
         </div>
 
-        <task-listing :task-list="taskList" @marked-as-done="displayAllTasksDone"
-        @task-deleted="deleteTask"
-        @task-edited="editTask">
+        <task-listing 
+            :task-list="taskList" 
+            @marked-as-done="displayAllTasksDone"
+            @task-deleted="deleteTask"
+            @task-edited="editTask">
         </task-listing>
 
-        <div v-if="taskListDone.length" class=" mt-5 task-list w-11/12 bg-[#eee]">
-            <p class="px-2 py-2 text-xl">You finished : </p>
-            <div class="p-2 task-list-item flex justify-between bg-white rounded-xl m-5"
-                v-for="(task,index) in taskListDone"
-                :key="index"
-            >
-                <p class="px-1"> {{task.name}}</p>
-            </div>
-        </div>
+       
+
+       
+    </div>
+    <div class="footer flex items-end">
+        <p class="text-[#E19B86]">Made with ❤ using Vue.js and Tailwind.</p>
     </div>
 
     <!-- IMPORT APP-->
