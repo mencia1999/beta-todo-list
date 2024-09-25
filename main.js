@@ -67,6 +67,7 @@ const app = Vue.createApp({
         },
         clearAllTask(){
             this.taskList = [];
+            this.searchTaskList = [];
             confetti({
                 particleCount: 100,
                 startVelocity: 30,
