@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <title>To Do List</title>
+</head>
+<body class="bg-slate-900 flex flex-col items-center h-screen">
+    <h1 class="text-5xl text-center text-sky-400"> First To Do List Using  </h1>
+    <p class="text-xl text-center text-white"> - Vue Js</p>
+    <p class="text-xl text-center text-white"  > - Tailwind </p>
+
+    <div class="mt-5 shadow-2xl shadow-white w-3/4 flex p-2  h-screen bg-white items-center rounded-xl flex-col" id="todo-list-app">
+        <h3 class="text-2xl">Good morning You ! </h3> 
+        <p>{{ dateNow }}</p>
+        <div class="task-input-container m-9 w-11/12 rounded border-dashed bg-[#eee] p-2 flex justify-between items-center">
+            <i class="fa-solid fa-plus text-black"></i>
+            <input type="text" placeholder="New Task" class="w-4/5 bg-inherit text-black outline-none border-none" v-model="newTaskName" @keydown="saveTask($event)">
+           
+        </div>
+
+        <task-listing :task-list="taskList" @marked-as-done="displayAllTasksDone"
+        @task-deleted="deleteTask"></task-listing>
+
+        <div v-if="taskListDone.length" class=" mt-5 task-list w-11/12 bg-[#eee]">
+            <p class="px-2 py-2">You finished : </p>
+            <div class="p-2 task-list-item flex justify-between bg-white rounded-xl m-5"
+                v-for="(task,index) in taskListDone"
+                :key="index"
+            >
+                <p class="px-1"> {{task}}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMPORT APP-->
+     <script src="main.js"></script>
+
+
+    <!-- IMPORT COMPONENTS -->
+     <script src="components/TaskListing.js"></script> 
+    <!-- MOUNT APP -->
+     <script>
+        const mountedApp = app.mount('#todo-list-app')
+
+     </script>
+</body>
+
+</html>
