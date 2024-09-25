@@ -17,42 +17,43 @@
     <title>To Do List</title>
 </head>
 <body class="flex flex-col items-center h-screen">
-   <div class="todolist-container mt-10 shadow-xl shadow-grey-200 border-solid border-black border-1 w-11/12 flex p-2  h-4/5  bg-white items-center rounded-2xl flex-col" id="todo-list-app">
-        <h1 class="text-3xl text-[#75A47F] font-bold mt-5">Let's get some tasks done</h1>
-        <p>{{ dateNow }}</p>
-        <div class="task-input-container m-9 w-11/12 rounded-2xl border-dashed bg-[#eee] p-2 flex justify-between items-center">
-           
-            <input type="text" placeholder="New Task" class="w-3/4  bg-inherit text-black outline-none border-none px-2" 
-                   v-model="newTaskName"
-                   @keydown="saveTask($event)">
-            <i @click="saveTask()" class="fa-solid fa-plus text-black px-2 new-task-icon"
-                :class="{'hithere': !taskList.length}"
-            ></i>
-           
-        </div>
-        <div v-if="taskList.length"class="task-search  bg-[#eee] text-black  border-solid rounded-xl p-2">
-            <i class="fa-solid fa-search text-black px-2"></i>
-            <input type="text" @keydown="searchTask()" v-model="searchTaskName" class="bg-inherit outline-none" placeholder="Search">
-            
-        </div>
-        <task-listing 
-            :task-list="!isSearching ? taskList: searchTaskList" 
-            @marked-as-done="displayAllTasksDone"
-            @task-deleted="deleteTask"
-            @task-edited="editTask">
-        </task-listing>
-        <div class="" v-if="!taskList.length">
-            <p> You have no task to do</p>
-        </div>
-
-        <button @click="clearAllTask()" v-if="taskList.length" 
-                class="bg-[#E19B86] text-white rounded p-3 transition ease-in-out delay-150 
-                       hover:-translate-y-1 hover:scale-110 hover:bg-[#fccfd2] duration-300
-        
-        "> Clear All</button>
-
-       
-    </div>
+    <div class="todolist-container mt-10 shadow-xl shadow-grey-200 border-solid border-black border-1 w-11/12 flex p-2 h-4/5 bg-white items-center rounded-2xl flex-col relative" 
+    id="todo-list-app">
+   <h1 class="text-3xl text-[#75A47F] font-bold mt-5">Let's get some tasks done</h1>
+   <p>{{ dateNow }}</p>
+   <div class="task-input-container m-9 w-11/12 rounded-2xl border-dashed bg-[#eee] p-2 flex justify-between items-center">
+       <input type="text" placeholder="New Task" class="w-3/4 bg-inherit text-black outline-none border-none px-2" 
+              v-model="newTaskName" @keydown="saveTask($event)">
+       <i @click="saveTask()" class="fa-solid fa-plus text-black px-2 new-task-icon"
+          :class="{'hithere': !taskList.length}"></i>
+   </div>
+   
+   <div class="tasklist-option w-11/12 flex items-baseline  justify-between m-5">
+       <div v-if="taskList.length" class="task-search bg-[#eee] text-black border-solid rounded-xl p-2 ml-auto">
+           <i class="fa-solid fa-search text-black px-2"></i>
+           <input type="text" @keydown="searchTask()" v-model="searchTaskName" class="bg-inherit outline-none" placeholder="Search">
+       </div>
+      
+   </div>
+   
+   <task-listing 
+       :task-list="!isSearching ? taskList : searchTaskList" 
+       @marked-as-done="displayAllTasksDone"
+       @task-deleted="deleteTask"
+       @task-edited="editTask">
+   </task-listing>
+   <div v-if="!taskList.length">
+       <p>You have no task to do</p>
+   </div>
+   <div v-else class="w-11/12 m-5 flex items-center absolute bottom-0 border-t-2 border-grey-500 p-2">
+     <p class="text-right"> You have {{ taskList.length }} task(s) to do</p>
+     <button @click="clearAllTask()" v-if="taskList.length" 
+        class="ml-auto bg-[#E19B86] text-white rounded p-3 mx-2 transition ease-in-out delay-150 
+        hover:-translate-y-1 hover:scale-110 hover:bg-[#fccfd2] duration-300"> 
+    Clear All
+</button>
+   </div>
+</div>
     <div class="footer flex items-end">
         <p class="text-[#E19B86]">Made with ❤ using Vue.js and Tailwind.</p>
     </div>
