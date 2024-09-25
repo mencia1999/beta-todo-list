@@ -3,7 +3,7 @@ Beta-todo-list
 
 # DESCRIPTION
 A simple to do list
-You can add, delete and mark a task as done
+You can add, edit, delete and mark a task as done
 
 # STACKS
 - Vue JS 3 CDN
@@ -11,7 +11,6 @@ You can add, delete and mark a task as done
 - Font Awesome 6 CDN
 
 # COMING SOON
-- Edit a task
 - Add Date
 - Add category
 
