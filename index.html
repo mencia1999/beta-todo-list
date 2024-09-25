@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,18 +25,31 @@
             <input type="text" placeholder="New Task" class="w-3/4  bg-inherit text-black outline-none border-none px-2" 
                    v-model="newTaskName"
                    @keydown="saveTask($event)">
-            <i @click="saveTask()" class="fa-solid fa-plus text-black px-2 new-task-icon"></i>
+            <i @click="saveTask()" class="fa-solid fa-plus text-black px-2 new-task-icon"
+                :class="{'hithere': !taskList.length}"
+            ></i>
            
         </div>
-
+        <div v-if="taskList.length"class="task-search  bg-[#eee] text-black  border-solid rounded-xl p-2">
+            <i class="fa-solid fa-search text-black px-2"></i>
+            <input type="text" @keydown="searchTask()" v-model="searchTaskName" class="bg-inherit outline-none" placeholder="Search">
+            
+        </div>
         <task-listing 
-            :task-list="taskList" 
+            :task-list="!isSearching ? taskList: searchTaskList" 
             @marked-as-done="displayAllTasksDone"
             @task-deleted="deleteTask"
             @task-edited="editTask">
         </task-listing>
+        <div class="" v-if="!taskList.length">
+            <p> You have no task to do</p>
+        </div>
 
-        <button @click="clearAllTask()" v-if="taskList.length" class="bg-[#E19B86] text-white rounded p-3"> Clear All</button>
+        <button @click="clearAllTask()" v-if="taskList.length" 
+                class="bg-[#E19B86] text-white rounded p-3 transition ease-in-out delay-150 
+                       hover:-translate-y-1 hover:scale-110 hover:bg-[#fccfd2] duration-300
+        
+        "> Clear All</button>
 
        
     </div>

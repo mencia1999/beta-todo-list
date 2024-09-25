@@ -22,13 +22,20 @@ const app = Vue.createApp({
                
             ],
             newTaskName: '',
+            searchTaskName: '',
+            searchTaskList:'',
+            isSearching : false
+           
            
             
         }
     },
     methods: {
         saveTask(e = null) {
+            this.isSearching = false
+            this.searchTaskName = ''
             if(e === null || (e !== null && e.key === 'Enter')){
+                
                 let position = this.taskList.length + 1
                 let task = {
                    
@@ -60,6 +67,18 @@ const app = Vue.createApp({
         },
         clearAllTask(){
             this.taskList = [];
+            confetti({
+                particleCount: 100,
+                startVelocity: 30,
+                spread: 360,
+                
+              });
+        },
+        searchTask(){
+            this.isSearching = true
+            
+            this.searchTaskList = this.taskList.filter(task => task.name.includes(this.searchTaskName))
+            
         }
 
     }

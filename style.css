@@ -23,3 +23,14 @@ h1{
     position:absolute;
     bottom:10px;
 }
+
+.hithere {
+    animation: hithere 1s ease 5;
+  }
+  @keyframes hithere {
+    30% { transform: scale(1.2); }
+    40%, 60% { transform: rotate(-20deg) scale(1.2); }
+    50% { transform: rotate(20deg) scale(1.2); }
+    70% { transform: rotate(0deg) scale(1.2); }
+    100% { transform: scale(1); }
+  }
