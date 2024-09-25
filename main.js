@@ -2,15 +2,40 @@ const app = Vue.createApp({
     data() {
         return {
             dateNow: new Date().toDateString(),
-            taskList: ['Jouer au Golf'],
+            taskList: [
+                {
+                   
+                    name: "Jouer au golf",
+                    isBeeingEdited: false,
+                    editedName:''
+                },
+                {
+                   
+                    name: "Faire à manger",
+                    isBeeingEdited: false,
+                    editedName: ''
+                }
+               
+            ],
             newTaskName: '',
-            taskListDone : []
+            taskListDone : [],
+            isEditing: false
         }
     },
     methods: {
-        saveTask(e) {
-            if(e.key === 'Enter'){
-                this.taskList.push(this.newTaskName)
+        saveTask(e = null) {
+            if(e === null || (e !== null && e.key === 'Enter')){
+               
+                
+                let task = {
+                   
+                    name: this.newTaskName,
+                    isBeeingEdited: false,
+                    editedName:''
+                }
+                
+                this.taskList.push(task)
+                console.log(this.taskList)
                 this.newTaskName = ''
             }
         },
@@ -21,6 +46,11 @@ const app = Vue.createApp({
             this.taskListDone.push(taskToMarkAsDone)
             confetti()
             
+        },
+        editTask(editInformation){
+            console.log(editInformation)
+            this.taskList[editInformation.index].name = editInformation.name
+            this.taskList[editInformation.index].isBeeingEdited = false
         },
         deleteTask(taskIndex){
             this.taskList = this.taskList.filter((_,i) => i !== taskIndex)
