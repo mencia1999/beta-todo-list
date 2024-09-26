@@ -45,7 +45,7 @@
    <div v-if="!taskList.length">
        <p>You have no task to do</p>
    </div>
-   <div v-else class="w-11/12 m-5 flex items-center absolute bottom-0 border-t-2 border-grey-500 py-2">
+   <div v-else class="w-11/12  flex items-center absolute bottom-0 border-t-2 border-grey-500 py-2 bg-white z-10">
      <p class="text-right"> You have {{ taskList.length }} task(s) to do</p>
      <button @click="clearAllTask()" v-if="taskList.length" 
         class="ml-auto bg-[#E19B86] text-white rounded p-3 mx-2 transition ease-in-out delay-150 
